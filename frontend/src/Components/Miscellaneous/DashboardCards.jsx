@@ -47,6 +47,7 @@ const DashboardCards = ({ loading, data }) => {
         <Box
           width={"100%"}
           display="flex"
+          flexDirection={isVertical?"column":"row"}
           gap={5}
           overflow={isVertical ? "scroll" : "inherit"}
         >

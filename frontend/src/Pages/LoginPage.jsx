@@ -49,10 +49,18 @@ const LoginPage = () => {
   const handleSubmit = () => {
     if (email.trim() === "") {
       setCheckEmail(true);
+      return;
     }
     if (password.trim() === "") {
       setCheckPass(true);
+      return
     }
+
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if(!regex.test(email)){
+      setCheckEmail(true);
+      return;
+    };
     // console.log(email,password)
     if (!email == "" && !password == "") {
       setLoading(true);
@@ -93,14 +101,14 @@ const LoginPage = () => {
           backgroundSize={!isVertical ? "cover" : "cover"}
           bgRepeat={"no-repeat"}
           backgroundPosition={!isVertical ? "0 -130px" : "0 0 "}
-          // mb={0}
+        // mb={0}
         ></Box>
         <Box w={"100%"} mt={!isVertical ? -520 : -180}>
           <Flex
             gap={5}
             flexDir={"column"}
             alignItems={"center"}
-            // border={"1px solid red"}
+          // border={"1px solid red"}
           >
             <Image boxSize="70px" src={logo} />
             <Text textAlign={"center"} color={"white"} fontSize={"15px"}>
@@ -136,10 +144,10 @@ const LoginPage = () => {
                 <FormControl isInvalid={checkEmail} id="email">
                   <FormLabel>Email address</FormLabel>
                   <Input
+                    type="email"
                     onChange={handleChangeEmail}
                     value={email}
                     size={"lg"}
-                    type="email"
                   />
                   {checkEmail && (
                     <FormErrorMessage>Email is required.</FormErrorMessage>
